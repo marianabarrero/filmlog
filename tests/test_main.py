@@ -49,7 +49,7 @@ def test_create_movie_as_admin(client):
     login = client.post("/auth/login", json={"email": "admin@test.com", "password": "admin123"})
     token = login.json()["access_token"]
     r = client.post("/movies",
-        json={"title": "Inception", "genre": "Sci-fi", "year": 2010},
+        json={"title": "Inception", "genre": "Sci-fi", "year": 2010, "poster_url": None},
         headers={"Authorization": f"Bearer {token}"}
     )
     assert r.status_code == 201
@@ -70,7 +70,7 @@ def test_duplicate_review(client):
     admin_login = client.post("/auth/login", json={"email": "admin2@test.com", "password": "admin123"})
     admin_token = admin_login.json()["access_token"]
     client.post("/movies",
-        json={"title": "Movie", "genre": "Drama", "year": 2020},
+        json={"title": "Movie", "genre": "Drama", "year": 2020, "poster_url": None},
         headers={"Authorization": f"Bearer {admin_token}"}
     )
     # Login usuario normal
