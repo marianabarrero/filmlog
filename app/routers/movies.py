@@ -16,6 +16,7 @@ class MovieCreate(BaseModel):
     genre: str
     year: int
     synopsis: Optional[str] = None
+    poster_url: Optional[str] = None
 
 @router.get("")
 def list_movies(page: int = 1, genre: Optional[str] = None, db: Session = Depends(get_db)):
@@ -33,6 +34,8 @@ def list_movies(page: int = 1, genre: Optional[str] = None, db: Session = Depend
             "title": m.title,
             "genre": m.genre,
             "year": m.year,
+            "synopsis": m.synopsis,
+            "poster_url": m.poster_url,
             "avg_score": round(float(avg), 2) if avg else None
         })
     return {"total": total, "page": page, "results": result}
@@ -49,6 +52,7 @@ def get_movie(movie_id: int, db: Session = Depends(get_db)):
         "genre": movie.genre,
         "year": movie.year,
         "synopsis": movie.synopsis,
+        "poster_url": movie.poster_url,
         "avg_score": round(float(avg), 2) if avg else None
     }
 
