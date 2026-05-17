@@ -10,5 +10,6 @@ class Movie(Base):
     genre = Column(String, nullable=False)
     year = Column(Integer, nullable=False)
     synopsis = Column(String)
+    poster_url = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     reviews = relationship("Review", back_populates="movie")
