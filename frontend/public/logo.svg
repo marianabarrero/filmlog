@@ -1,0 +1,21 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gc" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="80" height="80" rx="18" fill="url(#gc)"/>
+  <rect x="14" y="28" width="52" height="34" rx="5" fill="none" stroke="white" stroke-width="1.5" opacity="0.5"/>
+  <rect x="14" y="28" width="52" height="34" rx="5" fill="white" opacity="0.05"/>
+  <rect x="20" y="18" width="10" height="14" rx="3" fill="#a78bfa" stroke="white" stroke-width="1.5"/>
+  <rect x="35" y="15" width="10" height="17" rx="3" fill="#7f77dd" stroke="white" stroke-width="1.5"/>
+  <rect x="50" y="18" width="10" height="14" rx="3" fill="#a78bfa" stroke="white" stroke-width="1.5"/>
+  <line x1="20" y1="22" x2="20" y2="28" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <line x1="30" y1="22" x2="30" y2="28" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <line x1="35" y1="22" x2="35" y2="28" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <line x1="45" y1="22" x2="45" y2="28" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <line x1="50" y1="22" x2="50" y2="28" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <line x1="60" y1="22" x2="60" y2="28" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <path d="M32 38 L32 52 L48 45 Z" fill="white" opacity="0.9"/>
+</svg>
