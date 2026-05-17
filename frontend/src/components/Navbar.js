@@ -42,7 +42,7 @@ export default function Navbar() {
     <nav style={styles.nav}>
       <Link to="/" style={styles.logo}>
         <div style={styles.logoIcon}>
-          <span style={{ fontSize: '14px' }}>🎬</span>
+            <img src="/logo.svg" alt="MovieVerse" style={{ width: '28px', height: '28px', borderRadius: '8px' }} />
         </div>
         <div style={styles.logoText}>
           Movie<span style={styles.logoSpan}>Verse</span>

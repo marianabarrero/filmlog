@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { register } from '../services/api';
+import { register, login } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
 export default function Register() {
@@ -26,9 +26,9 @@ export default function Register() {
     setError('');
     try {
       await register(email, password);
-      const { login } = await import('../services/api');
       const res = await login(email, password);
       loginUser(res.data.user, res.data.access_token);
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.detail || 'Registration failed');
     } finally {
@@ -65,17 +65,42 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '16px' }}>
             <label style={labelStyle}>Email</label>
-            <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="you@example.com" required style={inputStyle} />
+            <input
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              type="email"
+              placeholder="you@example.com"
+              required
+              style={inputStyle}
+            />
           </div>
           <div style={{ marginBottom: '16px' }}>
             <label style={labelStyle}>Password</label>
-            <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="••••••••" required style={inputStyle} />
+            <input
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type="password"
+              placeholder="••••••••"
+              required
+              style={inputStyle}
+            />
           </div>
           <div style={{ marginBottom: '24px' }}>
             <label style={labelStyle}>Confirm password</label>
-            <input value={confirm} onChange={e => setConfirm(e.target.value)} type="password" placeholder="••••••••" required style={inputStyle} />
+            <input
+              value={confirm}
+              onChange={e => setConfirm(e.target.value)}
+              type="password"
+              placeholder="••••••••"
+              required
+              style={inputStyle}
+            />
           </div>
-          <button type="submit" disabled={loading} style={{ width: '100%', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', border: 'none', color: '#fff', padding: '12px', borderRadius: '9px', fontSize: '13px', fontWeight: '500', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1 }}>
+          <button
+            type="submit"
+            disabled={loading}
+            style={{ width: '100%', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', border: 'none', color: '#fff', padding: '12px', borderRadius: '9px', fontSize: '13px', fontWeight: '500', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1 }}
+          >
             {loading ? 'Creating account...' : 'Create account'}
           </button>
         </form>
