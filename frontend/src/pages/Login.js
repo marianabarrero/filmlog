@@ -153,7 +153,7 @@ export default function Login() {
 
           <div style={{ marginTop: '24px', padding: '14px', background: 'rgba(83,74,183,0.08)', border: '1px solid rgba(127,119,221,0.15)', borderRadius: '10px' }}>
             <div style={{ fontSize: '11px', color: '#4a4a68', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Demo credentials</div>
-            <div style={{ fontSize: '12px', color: '#6b6a88' }}>user@filmlog.com / user123</div>
+            <div style={{ fontSize: '12px', color: '#6b6a88' }}>user@movieverse.com / user123</div>
           </div>
         </div>
       </div>
