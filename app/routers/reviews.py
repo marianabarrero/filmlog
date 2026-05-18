@@ -91,3 +91,20 @@ def delete_review(
     db.delete(review)
     db.commit()
     return {"detail": "Reseña eliminada"}
+
+@router.get("/my-reviews")
+def get_my_reviews(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    reviews = db.query(Review).filter(Review.user_id == current_user.id).all()
+    result = []
+    for r in reviews:
+        movie = db.query(Movie).filter(Movie.id == r.movie_id).first()
+        result.append({
+            "id": r.id,
+            "movie_id": r.movie_id,
+            "movie_title": movie.title if movie else "Unknown",
+            "poster_url": movie.poster_url if movie else None,
+            "score": r.score,
+            "body": r.body,
+            "created_at": r.created_at
+        })
+    return result

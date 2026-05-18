@@ -93,6 +93,18 @@ export default function Navbar() {
                   </Link>
                 )}
 
+                {user.role !== 'admin' && (
+                    <Link to="/my-reviews" onClick={() => setDropdownOpen(false)}>
+                        <div
+                          style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer', color: '#9998b3', fontSize: '13px' }}
+                          onMouseEnter={e => e.currentTarget.style.background = '#12121f'}
+                          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        >
+                          <span>⭐</span> My Reviews
+                        </div>
+                    </Link>
+              )}
+
                 {user.role === 'admin' && (
                   <Link to="/admin" onClick={() => setDropdownOpen(false)}>
                     <div

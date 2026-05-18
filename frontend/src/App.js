@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import MovieDetail from './pages/MovieDetail';
 import AdminPanel from './pages/AdminPanel';
 import Profile from './pages/Profile';
+import MyReviews from './pages/MyReviews';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/movies/:id" element={<MovieDetail />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/my-reviews" element={<MyReviews />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
