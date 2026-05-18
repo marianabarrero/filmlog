@@ -44,7 +44,7 @@ export default function Home() {
             <span style={{ background: 'linear-gradient(90deg,#c084fc,#a78bfa,#7f77dd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>worth watching</span>
           </h1>
           <p style={{ fontSize: '16px', color: '#6b6a88', marginBottom: '40px', lineHeight: '1.6', maxWidth: '480px', margin: '0 auto 40px' }}>
-            A curated catalog rated by real cinephiles.<br />Find your next favorite film tonight.
+            A curated catalog rated by real cinephiles<br />Find your next favorite film
           </p>
 
           {/* SEARCH */}
@@ -102,21 +102,23 @@ export default function Home() {
       </div>
 
       {/* MOVIES GRID */}
-      {loading ? (
-        <div style={{ textAlign: 'center', padding: '60px', color: '#3a3a58', fontSize: '14px' }}>
-          Loading films...
-        </div>
-      ) : filtered.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '60px', color: '#3a3a58', fontSize: '14px' }}>
-          No films found.
-        </div>
-      ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '16px', padding: '0 32px 32px' }}>
-          {filtered.map(movie => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-      )}
+      <div style={{ minHeight: '600px', padding: '0 32px 32px' }}>
+          {loading ? (
+             <div style={{ textAlign: 'center', padding: '60px', color: '#3a3a58', fontSize: '14px' }}>
+                 Loading films...
+           </div>
+           ) : filtered.length === 0 ? (
+             <div style={{ textAlign: 'center', padding: '60px', color: '#3a3a58', fontSize: '14px' }}>
+                 No films found.
+             </div>
+           ) : (
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '16px' }}>
+                 {filtered.map(movie => (
+                     <MovieCard key={movie.id} movie={movie} />
+           ))}
+       </div>
+  )}
+</div>
     </div>
   );
 }
