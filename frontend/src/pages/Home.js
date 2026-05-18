@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getMovies } from '../services/api';
 
-const GENRES = ['All', 'Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-fi', 'Thriller'];
+const GENRES = ['All', 'Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-fi', 'Thriller', 'Western'];
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -33,49 +33,47 @@ export default function Home() {
     m.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  const totalPages = Math.ceil(total / 10);
-
   return (
     <div style={{ minHeight: '100vh' }}>
 
-     {/* HERO */}
-     <div style={{ position: 'relative', padding: '72px 32px 48px', textAlign: 'center', overflow: 'hidden' }}>
-         <div style={{ position: 'relative', zIndex: 1 }}>
-             <h1 style={{ fontSize: '52px', fontWeight: '700', color: '#f0eeff', lineHeight: '1.15', marginBottom: '16px', letterSpacing: '-1px' }}>
-                 Discover films<br />
-                 <span style={{ background: 'linear-gradient(90deg,#c084fc,#a78bfa,#7f77dd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>worth watching</span>
-              </h1>
-              <p style={{ fontSize: '16px', color: '#6b6a88', marginBottom: '40px', lineHeight: '1.6', maxWidth: '480px', margin: '0 auto 40px' }}>
-                 A curated catalog rated by real cinephiles<br />Find your next favorite film
-              </p>
-                {/* SEARCH */}
-                <div style={{ maxWidth: '520px', margin: '0 auto', position: 'relative' }}>
-                  <input
-                     value={search}
-                     onChange={e => setSearch(e.target.value)}
-                     placeholder="Search by title..."
-                     style={{
-                         width: '100%',
-                         background: 'rgba(83,74,183,0.1)',
-                         border: '1.5px solid rgba(127,119,221,0.4)',
-                         borderRadius: '12px',
-                         padding: '14px 52px 14px 20px',
-                         fontSize: '15px',
-                         color: '#f0eeff',
-                         outline: 'none',
-                         fontFamily: 'inherit',
-                         boxShadow: '0 0 30px rgba(83,74,183,0.15)',
-                       }}
-                   />
-                   <div style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', width: '32px', height: '32px', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                      </svg>
-                   </div>
-                </div>
-          </div>
-      </div>
+      {/* HERO */}
+      <div style={{ position: 'relative', padding: '72px 32px 48px', textAlign: 'center', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <h1 style={{ fontSize: '52px', fontWeight: '700', color: '#f0eeff', lineHeight: '1.15', marginBottom: '16px', letterSpacing: '-1px' }}>
+            Discover films<br />
+            <span style={{ background: 'linear-gradient(90deg,#c084fc,#a78bfa,#7f77dd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>worth watching</span>
+          </h1>
+          <p style={{ fontSize: '16px', color: '#6b6a88', marginBottom: '40px', lineHeight: '1.6', maxWidth: '480px', margin: '0 auto 40px' }}>
+            A curated catalog rated by real cinephiles.<br />Find your next favorite film tonight.
+          </p>
 
+          {/* SEARCH */}
+          <div style={{ maxWidth: '520px', margin: '0 auto', position: 'relative' }}>
+            <input
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search by title..."
+              style={{
+                width: '100%',
+                background: 'rgba(83,74,183,0.1)',
+                border: '1.5px solid rgba(127,119,221,0.4)',
+                borderRadius: '12px',
+                padding: '14px 52px 14px 20px',
+                fontSize: '15px',
+                color: '#f0eeff',
+                outline: 'none',
+                fontFamily: 'inherit',
+                boxShadow: '0 0 30px rgba(83,74,183,0.15)',
+              }}
+            />
+            <div style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', width: '32px', height: '32px', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* GENRE TABS */}
       <div style={{ display: 'flex', gap: '8px', padding: '0 32px', marginBottom: '24px', flexWrap: 'wrap' }}>
@@ -119,7 +117,6 @@ export default function Home() {
           ))}
         </div>
       )}
-
     </div>
   );
 }

@@ -14,6 +14,7 @@ class RegisterRequest(BaseModel):
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+    
 
 @router.post("/register", status_code=201)
 def register(data: RegisterRequest, db: Session = Depends(get_db)):
@@ -28,8 +29,10 @@ def register(data: RegisterRequest, db: Session = Depends(get_db)):
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == data.email).first()
-    if not user or not verify_password(data.password, user.password_hash):
-        raise HTTPException(status_code=401, detail="Credenciales inválidas")
+    if not user:
+        raise HTTPException(status_code=401, detail="No account found with this email address")
+    if not verify_password(data.password, user.password_hash):
+        raise HTTPException(status_code=401, detail="Incorrect password. Please try again")
     return {
         "access_token": create_token(user.id),
         "token_type": "bearer",
