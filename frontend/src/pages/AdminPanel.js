@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createMovie, getMovies, updateMovie, deleteMovie } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
-const GENRES = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-fi', 'Thriller', 'Western'];
+const GENRES = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-fi', 'Thriller'];
 
 export default function AdminPanel() {
   const { user } = useAuth();
@@ -133,7 +133,7 @@ export default function AdminPanel() {
   const selectedGenres = form.genre ? form.genre.split(',').map(g => g.trim()).filter(Boolean) : [];
 
   return (
-    <div style={{ minHeight: '100vh', background: 'transparent', padding: '32px' }}>
+    <div style={{ minHeight: '100vh', padding: '32px' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
 
         <div style={{ marginBottom: '32px' }}>
@@ -148,10 +148,10 @@ export default function AdminPanel() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+        <div className="admin-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', alignItems: 'start' }}>
 
           {/* FORM */}
-          <div style={{ background: '#0e0e1a', border: `1px solid ${editingMovie ? '#534ab7' : '#2a2a3e'}`, borderRadius: '16px', padding: '24px' }}>
+          <div style={{ background: '#0e0e1a', border: `1px solid ${editingMovie ? '#534ab7' : '#2a2a3e'}`, borderRadius: '16px', padding: '24px', position: 'sticky', top: '80px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h2 style={{ fontSize: '15px', fontWeight: '500', color: '#f0eeff' }}>
                 {editingMovie ? `✏️ Editing: ${editingMovie.title}` : 'Add new film'}
@@ -178,15 +178,14 @@ export default function AdminPanel() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
                 <div>
                   <label style={labelStyle}>Title</label>
-                  <input name="title" value={form.title} onChange={handleChange} required  style={inputStyle} />
+                  <input name="title" value={form.title} onChange={handleChange}  style={inputStyle} />
                 </div>
                 <div>
                   <label style={labelStyle}>Year</label>
-                  <input name="year" value={form.year} onChange={handleChange} required type="number"   style={inputStyle} />
+                  <input name="year" value={form.year} onChange={handleChange} style={inputStyle} />
                 </div>
               </div>
 
-              {/* GENRE SELECTOR */}
               <div style={{ marginBottom: '12px' }}>
                 <label style={labelStyle}>Genre</label>
                 <select
@@ -213,15 +212,12 @@ export default function AdminPanel() {
 
               <div style={{ marginBottom: '12px' }}>
                 <label style={labelStyle}>Synopsis</label>
-                <textarea name="synopsis" value={form.synopsis} onChange={handleChange} placeholder="Brief description..." style={{ ...inputStyle, resize: 'vertical' }} rows={3} />
+                <textarea name="synopsis" value={form.synopsis} onChange={handleChange} placeholder="Description..." style={{ ...inputStyle, resize: 'vertical' }} rows={3} />
               </div>
 
               <div style={{ marginBottom: '20px' }}>
                 <label style={labelStyle}>Poster URL</label>
                 <input name="poster_url" value={form.poster_url} onChange={handleChange} placeholder="https://..." style={inputStyle} />
-                <div style={{ fontSize: '11px', color: '#3a3a58', marginTop: '4px' }}>
-                  Upload image to S3 and paste the Object URL
-                </div>
                 {form.poster_url && (
                   <img src={form.poster_url} alt="preview" style={{ width: '80px', marginTop: '8px', borderRadius: '6px', border: '1px solid #2a2a3e' }} onError={e => e.target.style.display = 'none'} />
                 )}

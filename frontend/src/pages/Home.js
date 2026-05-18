@@ -120,28 +120,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* PAGINATION */}
-      {totalPages > 1 && (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', padding: '0 32px 40px' }}>
-          <button
-            onClick={() => setPage(p => Math.max(1, p - 1))}
-            disabled={page === 1}
-            style={{ background: 'rgba(18,18,31,0.8)', border: '1px solid #2a2a3e', color: page === 1 ? '#3a3a58' : '#f0eeff', padding: '8px 16px', borderRadius: '8px', fontSize: '13px', cursor: page === 1 ? 'not-allowed' : 'pointer' }}
-          >
-            ← Prev
-          </button>
-          <span style={{ display: 'flex', alignItems: 'center', fontSize: '13px', color: '#5a5a78' }}>
-            Page {page} of {totalPages}
-          </span>
-          <button
-            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-            disabled={page === totalPages}
-            style={{ background: 'rgba(18,18,31,0.8)', border: '1px solid #2a2a3e', color: page === totalPages ? '#3a3a58' : '#f0eeff', padding: '8px 16px', borderRadius: '8px', fontSize: '13px', cursor: page === totalPages ? 'not-allowed' : 'pointer' }}
-          >
-            Next →
-          </button>
-        </div>
-      )}
     </div>
   );
 }
