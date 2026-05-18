@@ -33,12 +33,10 @@ const features = [
     title: 'Community-powered',
     text: 'Discover what real cinephiles think about every film',
   },
-  {
-    color: '#85b7eb',
-    path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
-    title: 'Always secure',
-    text: 'Your account and data are always protected',
-  },
+  { color: '#85b7eb', 
+    path: 'M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z', 
+    title: 'Your watchlist', 
+    text: 'Save films you want to watch and find them anytime' },
 ];
 
 export default function Login() {
@@ -80,9 +78,6 @@ export default function Login() {
   const LeftPanel = () => (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: isMobile ? '0 0 32px' : '0' }}>
       <div style={{ marginBottom: isMobile ? '20px' : '28px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(83,74,183,0.15)', border: '1px solid rgba(127,119,221,0.25)', borderRadius: '99px', padding: '4px 14px', fontSize: '11px', color: '#a78bfa', marginBottom: '16px' }}>
-          ✦ Join the community
-        </div>
         <h2 style={{ fontSize: isMobile ? '26px' : '34px', fontWeight: '600', color: '#f0eeff', lineHeight: '1.2', marginBottom: '12px', letterSpacing: '-0.5px' }}>
           Your cinema,<br />
           <span style={{ background: 'linear-gradient(90deg,#a78bfa,#7f77dd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>your reviews.</span>
@@ -116,8 +111,7 @@ export default function Login() {
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0' : '48px', maxWidth: '900px', width: '100%', position: 'relative', zIndex: 1 }}>
 
-        {isMobile && <LeftPanel />}
-        {!isMobile && <LeftPanel />}
+        <LeftPanel />
 
         <div style={{ background: '#0e0e1a', border: '1px solid #2a2a3e', borderRadius: '18px', padding: isMobile ? '28px 20px' : '36px 32px' }}>
           <div style={{ marginBottom: '28px' }}>
