@@ -52,7 +52,7 @@ export default function Profile() {
       );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#080810', padding: '32px' }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', padding: '32px' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
 
         {/* HEADER */}

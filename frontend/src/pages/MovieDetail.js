@@ -104,19 +104,19 @@ export default function MovieDetail() {
   const userReview = reviews.find(r => r.user_id === user?.id);
 
   if (loading) return (
-    <div style={{ minHeight: '100vh', background: '#080810', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3a3a58', fontSize: '14px' }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3a3a58', fontSize: '14px' }}>
       Loading...
     </div>
   );
 
   if (!movie) return (
-    <div style={{ minHeight: '100vh', background: '#080810', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3a3a58', fontSize: '14px' }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3a3a58', fontSize: '14px' }}>
       Movie not found.
     </div>
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#080810', padding: '32px' }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', padding: '32px' }}>
       <button onClick={() => navigate('/')} style={{ background: 'transparent', border: '1px solid #2a2a3e', color: '#5a5a78', padding: '8px 16px', borderRadius: '8px', fontSize: '13px', marginBottom: '24px', cursor: 'pointer' }}>
         ← Back
       </button>

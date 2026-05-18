@@ -106,7 +106,7 @@ export default function Login() {
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#080810', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '20px 16px' : '32px 24px', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '20px 16px' : '32px 24px', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 60% at 20% 50%,rgba(83,74,183,0.18) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 80% 20%,rgba(167,139,250,0.08) 0%,transparent 55%)', pointerEvents: 'none' }} />
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0' : '48px', maxWidth: '900px', width: '100%', position: 'relative', zIndex: 1 }}>

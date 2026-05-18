@@ -6,9 +6,23 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #080810;
   color: #f0eeff;
   min-height: 100vh;
+  background: #080810;
+}
+
+#root {
+  min-height: 100vh;
+  background: linear-gradient(180deg, 
+    #2d0a5e 0%, 
+    #1a0a2e 8%, 
+    #120820 20%, 
+    #0d0618 35%,
+    #080810 55%, 
+    #080810 100%
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 ::-webkit-scrollbar {
@@ -54,19 +68,5 @@ input, textarea {
   }
   .login-grid {
     grid-template-columns: 1fr !important;
-  }
-  .movies-grid-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 16px 16px !important;
-    gap: 10px !important;
-  }
-  .hero-section {
-    padding: 32px 16px 24px !important;
-  }
-  .hero-section h1 {
-    font-size: 26px !important;
-  }
-  .nav-container {
-    padding: 0 16px !important;
   }
 }
