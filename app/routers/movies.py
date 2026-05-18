@@ -20,7 +20,7 @@ class MovieCreate(BaseModel):
 
 @router.get("")
 def list_movies(page: int = 1, genre: Optional[str] = None, db: Session = Depends(get_db)):
-    limit = 10
+    limit = 100
     query = db.query(Movie)
     if genre:
         query = query.filter(Movie.genre.ilike(f"%{genre}%"))
