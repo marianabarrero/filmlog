@@ -9,22 +9,28 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 class RegisterRequest(BaseModel):
     email: EmailStr
+    username: str
     password: str
 
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
-    
 
 @router.post("/register", status_code=201)
 def register(data: RegisterRequest, db: Session = Depends(get_db)):
     if db.query(User).filter(User.email == data.email).first():
-        raise HTTPException(status_code=409, detail="Email ya registrado")
-    user = User(email=data.email, password_hash=hash_password(data.password))
+        raise HTTPException(status_code=409, detail="Email already registered")
+    if db.query(User).filter(User.username == data.username).first():
+        raise HTTPException(status_code=409, detail="Username already taken")
+    user = User(
+        email=data.email,
+        username=data.username,
+        password_hash=hash_password(data.password)
+    )
     db.add(user)
     db.commit()
     db.refresh(user)
-    return {"id": user.id, "email": user.email, "role": user.role}
+    return {"id": user.id, "email": user.email, "username": user.username, "role": user.role}
 
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
@@ -39,6 +45,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
         "user": {
             "id": user.id,
             "email": user.email,
+            "username": user.username,
             "role": user.role
         }
     }

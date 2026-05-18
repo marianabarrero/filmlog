@@ -38,11 +38,14 @@ export default function Navbar() {
     navigate('/');
   };
 
+  const displayName = user?.username || user?.email || '';
+  const initial = displayName.charAt(0).toUpperCase();
+
   return (
     <nav style={styles.nav}>
       <Link to="/" style={styles.logo}>
         <div style={styles.logoIcon}>
-            <img src="/logo.svg" alt="MovieVerse" style={{ width: '28px', height: '28px', borderRadius: '8px' }} />
+          <img src="/logo.svg" alt="MovieVerse" style={{ width: '28px', height: '28px', borderRadius: '8px' }} />
         </div>
         <div style={styles.logoText}>
           Movie<span style={styles.logoSpan}>Verse</span>
@@ -56,10 +59,12 @@ export default function Navbar() {
               style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', padding: '6px 12px', borderRadius: '10px', border: '1px solid #2a2a3e', background: dropdownOpen ? '#12121f' : 'transparent', transition: 'all 0.15s' }}
             >
               <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: '600', color: '#fff', flexShrink: 0 }}>
-                {user.email.charAt(0).toUpperCase()}
+                {initial}
               </div>
               <div>
-                <div style={{ fontSize: '12px', fontWeight: '500', color: '#f0eeff', lineHeight: 1 }}>My account</div>
+                <div style={{ fontSize: '12px', fontWeight: '500', color: '#f0eeff', lineHeight: 1 }}>
+                  {displayName}
+                </div>
                 {user.role === 'admin' && (
                   <div style={{ fontSize: '10px', color: '#7f77dd', marginTop: '2px' }}>Administrator</div>
                 )}
@@ -70,21 +75,28 @@ export default function Navbar() {
             {dropdownOpen && (
               <div style={{ position: 'absolute', top: 'calc(100% + 8px)', right: 0, background: '#0e0e1a', border: '1px solid #2a2a3e', borderRadius: '12px', padding: '8px', minWidth: '180px', zIndex: 200 }}>
                 <div style={{ padding: '8px 12px', borderBottom: '1px solid #1e1e2e', marginBottom: '6px' }}>
-                  <div style={{ fontSize: '12px', color: '#f0eeff', fontWeight: '500', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user.email}</div>
+                  <div style={{ fontSize: '11px', color: '#4a4a68', marginBottom: '2px' }}>Signed in as</div>
+                  <div style={{ fontSize: '12px', color: '#f0eeff', fontWeight: '500', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {user.email}
+                  </div>
                 </div>
+
                 {user.role !== 'admin' && (
-                    <Link to="/profile" onClick={() => setDropdownOpen(false)}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer', color: '#9998b3', fontSize: '13px' }}
-                         onMouseEnter={e => e.currentTarget.style.background = '#12121f'}
-                         onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                        >
-                         <span>🎬</span> My Watchlist
-                        </div>
-                    </Link>
+                  <Link to="/profile" onClick={() => setDropdownOpen(false)}>
+                    <div
+                      style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer', color: '#9998b3', fontSize: '13px' }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#12121f'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                    >
+                      <span>🎬</span> My Watchlist
+                    </div>
+                  </Link>
                 )}
+
                 {user.role === 'admin' && (
                   <Link to="/admin" onClick={() => setDropdownOpen(false)}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer', color: '#9998b3', fontSize: '13px' }}
+                    <div
+                      style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer', color: '#9998b3', fontSize: '13px' }}
                       onMouseEnter={e => e.currentTarget.style.background = '#12121f'}
                       onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                     >
@@ -92,6 +104,7 @@ export default function Navbar() {
                     </div>
                   </Link>
                 )}
+
                 <div style={{ borderTop: '1px solid #1e1e2e', marginTop: '6px', paddingTop: '6px' }}>
                   <div
                     onClick={handleLogout}

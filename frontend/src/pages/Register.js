@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 
 export default function Register() {
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [error, setError] = useState('');
@@ -22,10 +23,14 @@ export default function Register() {
       setError('Password must be at least 4 characters');
       return;
     }
+    if (username.length < 3) {
+      setError('Username must be at least 3 characters');
+      return;
+    }
     setLoading(true);
     setError('');
     try {
-      await register(email, password);
+      await register(email, password, username);
       const res = await login(email, password);
       loginUser(res.data.user, res.data.access_token);
       navigate('/');
@@ -39,7 +44,7 @@ export default function Register() {
   const inputStyle = {
     width: '100%', background: '#080810', border: '1px solid #2a2a3e',
     borderRadius: '8px', padding: '10px 14px', fontSize: '13px',
-    color: '#f0eeff', outline: 'none',
+    color: '#f0eeff', outline: 'none', fontFamily: 'inherit',
   };
 
   const labelStyle = {
@@ -49,11 +54,22 @@ export default function Register() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 60% at 70% 50%,rgba(83,74,183,0.2) 0%,transparent 65%)', pointerEvents: 'none' }} />
       <div style={{ background: '#0e0e1a', border: '1px solid #2a2a3e', borderRadius: '16px', padding: '40px', maxWidth: '420px', width: '100%', position: 'relative', zIndex: 1 }}>
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <div style={{ fontSize: '28px', marginBottom: '8px' }}>🎬</div>
+          <div style={{ width: '48px', height: '48px', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px' }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+          </div>
           <div style={{ fontSize: '20px', fontWeight: '600', color: '#f0eeff', marginBottom: '4px' }}>Create your account</div>
           <div style={{ fontSize: '13px', color: '#4a4a68' }}>Join the MovieVerse community</div>
         </div>
@@ -63,6 +79,16 @@ export default function Register() {
           </div>
         )}
         <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '16px' }}>
+            <label style={labelStyle}>Username</label>
+            <input
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              type="text"
+              required
+              style={inputStyle}
+            />
+          </div>
           <div style={{ marginBottom: '16px' }}>
             <label style={labelStyle}>Email</label>
             <input
@@ -99,7 +125,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            style={{ width: '100%', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', border: 'none', color: '#fff', padding: '12px', borderRadius: '9px', fontSize: '13px', fontWeight: '500', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1 }}
+            style={{ width: '100%', background: 'linear-gradient(135deg,#534ab7,#7f77dd)', border: 'none', color: '#fff', padding: '12px', borderRadius: '9px', fontSize: '13px', fontWeight: '500', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1, fontFamily: 'inherit' }}
           >
             {loading ? 'Creating account...' : 'Create account'}
           </button>

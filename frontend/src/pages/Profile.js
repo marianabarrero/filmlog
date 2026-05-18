@@ -62,7 +62,7 @@ export default function Profile() {
               {user?.email?.charAt(0).toUpperCase()}
             </div>
             <div>
-              <div style={{ fontSize: '18px', fontWeight: '600', color: '#f0eeff' }}>{user?.email}</div>
+              <div style={{ fontSize: '18px', fontWeight: '600', color: '#f0eeff' }}>{user?.username || user?.email}</div>
               <div style={{ fontSize: '12px', color: '#4a4a68' }}>
                 {watchlist.length} {watchlist.length === 1 ? 'film' : 'films'} saved
               </div>
