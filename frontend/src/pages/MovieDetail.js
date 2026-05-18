@@ -123,7 +123,7 @@ export default function MovieDetail() {
 
       {/* MOVIE DETAIL */}
       <div style={{ background: '#0e0e1a', border: '1px solid #2a2a3e', borderRadius: '16px', overflow: 'hidden', marginBottom: '24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: '0' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '200px 1fr', gap: '0' }}>
           <div style={{ background: 'linear-gradient(135deg,#0d0820,#1a1035)', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '280px' }}>
             {movie.poster_url ? (
               <img src={movie.poster_url} alt={movie.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -178,7 +178,7 @@ export default function MovieDetail() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1fr 1fr', gap: '24px' }}>
         {/* REVIEWS LIST */}
         <div>
           <h2 style={{ fontSize: '14px', fontWeight: '500', color: '#5a5a78', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>

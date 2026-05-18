@@ -41,3 +41,32 @@ button {
 input, textarea {
   font-family: inherit;
 }
+
+@media (max-width: 768px) {
+  .movie-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .reviews-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .admin-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .login-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .movies-grid-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 16px 16px !important;
+    gap: 10px !important;
+  }
+  .hero-section {
+    padding: 32px 16px 24px !important;
+  }
+  .hero-section h1 {
+    font-size: 26px !important;
+  }
+  .nav-container {
+    padding: 0 16px !important;
+  }
+}
